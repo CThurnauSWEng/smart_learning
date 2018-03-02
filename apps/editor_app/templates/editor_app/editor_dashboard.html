@@ -29,8 +29,8 @@
                 <tr>
                     <td>{{subject.title}}</td>                        
                     <td>{{subject.updated_at}}</td>
-                    <td><a href="/editor/edit_subject/{{subject.id}}">Edit</a></td>
-                    <td>delete</a></td>
+                    <td><a href="/editor/edit_subject/{{subject.id}}">Edit</a>
+                    <a href="/editor/delete_subject/{{subject.id}}">Delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>

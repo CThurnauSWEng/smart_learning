@@ -21,7 +21,7 @@ p,label,input {
     background: -o-linear-gradient(rgb(250,252,252),rgb(241, 203, 229)); /* Opera 11.6-12.0 */
     background: -moz-linear-gradient(rgb(250,252,252),rgb(241, 203, 229)); /* Firefox 3.6-15 */
     background: linear-gradient(rgb(250,252,252),rgb(241, 203, 229));        
-    height: 700px;
+    height: 730px;
 }
 #logo_img {
     height: 100px;
@@ -42,6 +42,10 @@ p,label,input {
     left: 0px;
 }
 #show_answer {
+    margin: 20px;
+    padding: 5px;
+}
+#show_hint {
     margin: 20px;
     padding: 5px;
 }

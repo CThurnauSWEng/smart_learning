@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^add_subject/(?P<subject_id>\d+)$', views.add_subject),    
     url(r'^check_answer', views.check_answer),     
     url(r'^show_answer', views.show_answer),     
+    url(r'^show_hint', views.show_hint),     
     url(r'^display_next_card', views.display_next_card),     
     url(r'^learner_home', views.learner_home)     
 ]

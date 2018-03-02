@@ -27,8 +27,8 @@
                     {% for card in cards%}
                     <tr>
                         <td>{{ card.question }}</td>
-                        <td><a href="/editor/edit_card/{{card.id}}">Edit</td>
-                        <td>Delete</td>
+                        <td><a href="/editor/edit_card/{{card.id}}">Edit
+                        <a href="/editor/delete_card/{{card.id}}">Delete</td>
                     </tr>
                     {% endfor %}
                 </tbody>

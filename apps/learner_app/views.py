@@ -148,3 +148,8 @@ def show_answer(request):
     card = Card.objects.filter(id=request.session['card_id'])
     card_json = serializers.serialize("json",card)
     return HttpResponse(card_json, content_type='application/json')
+
+def show_hint(request):
+    card = Card.objects.filter(id=request.session['card_id'])
+    card_json = serializers.serialize("json",card)
+    return HttpResponse(card_json, content_type='application/json')

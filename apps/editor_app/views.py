@@ -44,6 +44,38 @@ def edit_subject(request, subject_id):
     }
     return render(request, "editor_app/edit_subject.html", context)
 
+def delete_subject(request, subject_id):
+
+    delete_subject = Subject.objects.get(id=subject_id)
+
+    print subject_id
+
+    request.session['subject_id'] = subject_id
+
+    cards = Card.objects.filter(subject=delete_subject)
+
+ 
+
+    context = {
+
+        'subject'   : delete_subject,
+
+        'cards'     : cards,
+
+        'num_cards' : len(cards)
+
+    }
+
+    delete_subject.delete()
+
+    print "about to render editor_dashboard"
+
+    return redirect('/editor/editor_dashboard')
+    # return render(request, "editor_app/editor_dashboard.html", context)
+
+ 
+
+
 def create_card(request):
     context = {
         'this_user' : User.objects.get(id=request.session['user_id'])
@@ -68,3 +100,57 @@ def edit_card(request, card_id):
         'this_card' : this_card
     }
     return render(request, "editor_app/edit_card.html", context)
+
+
+ 
+
+def update_card(request, card_id):
+
+    update_card = Card.objects.get(id=card_id)
+
+    update_card.question = request.POST['question']
+
+    update_card.answer = request.POST['answer']
+
+    update_card.hint = request.POST['hint']
+
+    update_card.pic = request.POST['file'] 
+
+    update_card.save()
+
+ 
+
+    return redirect('/editor/edit_card/{}'.format(update_card.id)) #put it to the page you wnat it go to ciara
+
+ 
+def delete_card(request, card_id):
+
+    delete_card = Card.objects.get(id=card_id)
+
+    subject_id = request.session['subject_id']
+
+    print subject_id
+
+   
+
+    cards = Card.objects.all()
+
+    context = {
+
+        'delete_card' : delete_card   
+
+    }
+
+    delete_card.delete()
+
+    print "redirecting to edit_subject"
+    test_str = "editor/edit_subject/{}".format(request.session['subject_id'])
+    test_str = "editor/edit_subject/{}".format(subject_id)
+    print "test_str: ", test_str
+
+    return redirect("/editor/edit_subject/{}".format(subject_id))
+
+
+ 
+
+

@@ -20,8 +20,7 @@
         <h1 id="greeting">{{ cur_card.subject.title }}</h1></br>
         <div class="oneperpage">
             <h3>Quiz Card</h3> 
-            <p>Question: {{ cur_card.question }}
-            <p>Hint: {{ cur_card.hint }}</p>
+            <p>Question: {{ cur_card.question }}</p></br>
             <img src="/static/editor_app/{{ cur_card.img }}" alt="card image" height=200 width=200>            
             <label>Answer:</label>
             <form action="/learner/check_answer/" method="post">
@@ -35,8 +34,10 @@
             {% endif %}
             {% if status == 'Please Try Again' %}
                 <button id="show_answer">Show Answer</button>
+                <button id="show_hint">Show Hint</button>
             {% endif %}
             <div id="show_answer_div"></div>
+            <div id="show_hint_div"></div>
             <form action="/learner/display_next_card" method="post">
                 {% csrf_token %}
                 <input type="submit" name="" value="Next Card">
@@ -45,18 +46,26 @@
     </div>
        <script>
             $('#show_answer').click(function(){
-                // console.log('show_answer was clicked!')
                 $.ajax({
                     url: '/learner/show_answer',
                     success: function(serverResponse) {
                         for (key in serverResponse[0].fields) {
                             console.log("key: ", key);
                         }
-                        // console.log('success, serverResponse: ', serverResponse)
-                        // console.log(serverResponse[0].fields.answer)
                         res_str = '<p>Answer is: '+serverResponse[0].fields.answer+'</p>'
-                        // console.log(res_str)
                         $('#show_answer_div').html(res_str)
+                    }
+                })
+            });
+            $('#show_hint').click(function(){
+                $.ajax({
+                    url: '/learner/show_hint',
+                    success: function(serverResponse) {
+                        for (key in serverResponse[0].fields) {
+                            console.log("key: ", key);
+                        }
+                        res_str = '<p>Hint is: '+serverResponse[0].fields.hint+'</p>'
+                        $('#show_hint_div').html(res_str)
                     }
                 })
             });
