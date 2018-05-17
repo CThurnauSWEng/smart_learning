@@ -13,8 +13,7 @@
         </div>
         <div class="oneperpage">
             <img id="logo_img" src="/static/learner_app/images/transparent-heart.png" alt="heart logo">
-            <h3>Create a New Card</h3> 
-            <p>subject id: {{ request.session.subject_id }}</p>
+            <h3>Create a New Card for Subject: {{ this_subject.title }} </h3> 
             <form action="/editor/process_create_card" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
                 <label>Question:</label>

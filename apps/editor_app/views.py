@@ -78,7 +78,8 @@ def delete_subject(request, subject_id):
 
 def create_card(request):
     context = {
-        'this_user' : User.objects.get(id=request.session['user_id'])
+        'this_user'    : User.objects.get(id=request.session['user_id']),
+        'this_subject' : Subject.objects.get(id=request.session['subject_id'])
     }
     return render(request, "editor_app/create_card.html", context)
 
